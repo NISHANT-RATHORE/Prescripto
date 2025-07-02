@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: ApiGatewayService
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: ${AUTH_SERVICE_URL}
+          predicates:
+            - Path=/auth/**
+        - id: patient-service
+          uri: ${PATIENT_SERVICE_URL}
+          predicates:
+            - Path=/patient/**
+        - id: doctor-service
+          uri: ${DOCTOR_SERVICE_URL}
+          predicates:
+            - Path=/doctor/**
+        - id: appointment-service
+          uri: ${APPOINTMENT_SERVICE_URL}
+          predicates:
+            - Path=/appointment/**
+  main:
+    web-application-type: reactive
+
+frontend:
+  url: ${FRONTEND_URL}
+  url-alt: ${FRONTEND_URL_ALT}

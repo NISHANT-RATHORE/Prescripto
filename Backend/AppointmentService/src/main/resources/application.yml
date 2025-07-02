@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: AppointmentService
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+secret:
+  key: ${SECRET_KEY}
+
+rzp_key_id: ${RZP_KEY_ID}
+rzp_key_secret: ${RZP_KEY_SECRET}
+
+server:
+  port: 9004
+
+doctor-service:
+    url: ${DOCTOR_SERVICE_URL}
+
+patient-service:
+    url: ${PATIENT_SERVICE_URL}

@@ -1,0 +1,111 @@
+##spring:
+##  application:
+##    name: "AuthService"
+##  datasource:
+##    url: ${DB_URL}
+##    username: ${DB_USER}
+##    password: ${DB_PASSWORD}
+##    driver-class-name: org.postgresql.Driver
+##  jpa:
+##    database-platform: org.hibernate.dialect.PostgreSQLDialect
+##    hibernate:
+##      ddl-auto: update
+##    show-sql: true
+##  kafka:
+##    producer:
+##      bootstrap-servers:  ${KAFKA_BOOTSTRAP_SERVERS}
+##      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+##      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+##      transaction-id-prefix: "auth-service"
+##
+##server:
+##  port: 9001
+##
+##secret:
+##  key: ${SECRET_KEY}
+##
+##cloudinary:
+##  cloud_name: ${SPRING_CLOUDINARY_CLOUD_NAME}
+##  api_key: ${SPRING_CLOUDINARY_API_KEY}
+##  api_secret: ${SPRING_CLOUDINARY_API_SECRET}
+#
+#spring:
+#  application:
+#    name: "AuthService"
+#  datasource:
+#    url: ${DB_URL}
+#    username: ${DB_USER}
+#    password: ${DB_PASSWORD}
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    hibernate:
+#      ddl-auto: update # OK for dev, use 'validate' in production
+#    show-sql: true
+#  kafka:
+#    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+#    producer:
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#      transaction-id-prefix: "auth-service"
+#      properties:
+#        security.protocol: SASL_SSL
+#        sasl.mechanism: PLAIN
+#        sasl.jaas.config: >
+#          org.apache.kafka.common.security.plain.PlainLoginModule required username='${KAFKA_API_KEY}' password='${KAFKA_API_SECRET}';
+#        session.timeout.ms: 45000
+#      client-id: ccloud-springboot-client-247dacfc-6e5f-43ac-b622-a2eeb7ac087d
+#
+#
+#server:
+#  port: 9001
+#
+#secret:
+#  key: ${SECRET_KEY}
+#
+## Using standard Spring Boot property names for Cloudinary
+#cloudinary:
+#  cloud_name: ${CLOUDINARY_CLOUD_NAME}
+#  api_key: ${CLOUDINARY_API_KEY}
+#  api_secret: ${CLOUDINARY_API_SECRET}
+spring:
+  application:
+    name: "AuthService"
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  kafka:
+    admin:
+      auto-create: false
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    properties:
+      client.id: auth-service-client
+      security.protocol: SASL_SSL
+      sasl.mechanism: PLAIN
+      sasl.jaas.config: >
+        org.apache.kafka.common.security.plain.PlainLoginModule required username='${KAFKA_API_KEY}' password='${KAFKA_API_SECRET}';
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      transaction-id-prefix: "auth-tx-"
+
+server:
+  port: 9001
+
+secret:
+  key: ${SECRET_KEY}
+
+cloudinary:
+  cloud_name: ${CLOUDINARY_CLOUD_NAME}
+  api_key: ${CLOUDINARY_API_KEY}
+  api_secret: ${CLOUDINARY_API_SECRET}
