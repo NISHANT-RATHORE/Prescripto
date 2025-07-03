@@ -44,7 +44,7 @@ You can explore the admin panel using the following demo credentials:
 
 | Landing Page                                        | Appointment Booking & Payment                               |
 | --------------------------------------------------- | ----------------------------------------------------------- |
-| ![alt text](https://github.com/NISHANT-RATHORE/Doctor-Appointment-Project-2.O/blob/main/.github/assets/screenshot-landing.png.png?raw=true)         | ![](.github/assets/screenshot-payment.png)                  |
+| ![alt text](https://github.com/NISHANT-RATHORE/Doctor-Appointment-Project-2.O/blob/main/.github/assets/screenshot-landing.png?raw=true)         | ![](.github/assets/screenshot-payment.png)                  |
 | **Payment Successful**                              | **Appointment Management**                                  |
 | ![](.github/assets/screenshot-payment-successful.png) | ![](.github/assets/screenshot-appointments.png)             |
 
