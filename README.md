@@ -1,7 +1,7 @@
 # Prescripto - Doctor Appointment Booking Platform
 
-[![Java](https://img.shields.io/badge/Java-17-blue.svg?style=for-the-badge&logo=java)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-6DB33F.svg?style=for-the-badge&logo=spring-boot)](https://spring.io/projects/spring-boot)
+[![Java](https://img.shields.io/badge/Java-21-blue.svg?style=for-the-badge&logo=java)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.9-6DB33F.svg?style=for-the-badge&logo=spring-boot)](https://spring.io/projects/spring-boot)
 [![React](https://img.shields.io/badge/React-18-61DAFB.svg?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14-336791.svg?style=for-the-badge&logo=postgresql)](https://www.postgresql.org/)
 [![Kafka](https://img.shields.io/badge/Apache%20Kafka-3.x-231F20.svg?style=for-the-badge&logo=apache-kafka)](https://kafka.apache.org/)
@@ -32,7 +32,7 @@ You can explore the admin panel using the following demo credentials:
 
 -   **Role-Based Access Control:** Separate interfaces and privileges for Patients, Doctors, and Admins.
 -   **Secure Authentication:** JWT-based authentication and authorization for secure API access.
--   **Microservices Architecture:** A scalable and resilient backend built with 5 independent services.
+-   **Microservices Architecture:** A scalable backend built with 5 independent services.
 -   **Asynchronous Communication:** Uses Apache Kafka for event-driven actions like user profile creation, ensuring a responsive system.
 -   **Doctor Discovery:** Patients can browse a comprehensive list of doctors and filter by specialty.
 -   **Seamless Appointment Booking:** An intuitive multi-step process for booking and confirming appointments.
@@ -62,7 +62,7 @@ The backend follows a microservices pattern, with an API Gateway as the single e
 | Category      | Technology                                                                                                    |
 |---------------|---------------------------------------------------------------------------------------------------------------|
 | **Frontend**  | `React.js`, `Material-UI (MUI)`, `Axios`                                                                      |
-| **Backend**   | `Java 17`, `Spring Boot 3`, `Spring Cloud Gateway`, `Spring Security`, `Spring Data JPA`, `Lombok`                |
+| **Backend**   | `Java 21`, `Spring Boot 3`, `Spring Cloud Gateway`, `Spring Security`, `Spring Data JPA`, `Lombok`                |
 | **Database**  | `PostgreSQL`                                                                                                  |
 | **Messaging** | `Apache Kafka`                                                                                                |
 | **DevOps**    | `Docker`, `Docker Compose`, `AWS ECR`, `AWS App Runner`, `Netlify` (Frontend), `Vercel` (Admin)                 |
@@ -110,6 +110,62 @@ To run this project locally, you will need to have the following prerequisites i
 
 6.  **Run Admin Panel:**
     Follow the same steps as the frontend for the admin panel project.
+
+---
+
+## ☁️ Cloud Deployment
+
+The entire application is deployed using a modern, cloud-native strategy, leveraging serverless principles to ensure scalability and cost-efficiency.
+
+### Deployment Architecture
+
+| Component             | Service / Platform Used     | Purpose                                            |
+|-----------------------|-----------------------------|----------------------------------------------------|
+| **Backend Services**  | **AWS App Runner**          | Hosts the 5 containerized Spring Boot microservices. |
+| **Container Registry**  | **AWS ECR**                 | Stores the Docker images for all backend services.   |
+| **Database**          | **Neon** (Serverless Postgres) | Provides a fully managed, scalable SQL database.   |
+| **Message Broker**    | **Confluent** (Serverless Kafka)| Manages asynchronous, event-driven communication.  |
+| **Frontend App**      | **Netlify**                 | Deploys and hosts the main patient-facing web app. |
+| **Admin Panel**       | **Vercel**                  | Deploys and hosts the admin web application.       |
+
+### Deployment Workflow
+
+The backend deployment is automated through a push-to-deploy workflow.
+
+1.  **Prerequisites:**
+    -   AWS CLI configured (`aws configure`)
+    -   Docker installed and running
+
+2.  **Infrastructure Setup:**
+    -   A serverless PostgreSQL database is provisioned on **Neon**.
+    -   A serverless Kafka cluster is provisioned on **Confluent**.
+    -   The connection strings, API keys, and credentials from these services are used as environment variables in the App Runner configuration.
+
+3.  **Backend Deployment to App Runner:**
+    For each of the 5 backend microservices, the following process is followed:
+    a. **Build the JAR:** The application is packaged using Maven:
+       ```bash
+       ./gradlew clean build -x test
+       ```
+    b. **Build Docker Image:** A container image is built using the service's `Dockerfile`.
+       ```bash
+       docker build -t <service-name> .
+       ```
+    c. **Push to ECR:** The image is tagged and pushed to its dedicated Amazon ECR repository.
+       ```bash
+       # Authenticate Docker with AWS ECR
+       aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-aws-account-id>.dkr.ecr.<your-region>.amazonaws.com
+
+       # Tag and Push
+       docker tag <service-name>:latest <your-ecr-repo-uri>:latest
+       docker push <your-ecr-repo-uri>:latest
+       ```
+    d. **Automatic Deployment:** AWS App Runner is configured to monitor the ECR repository. When a new image is pushed, App Runner automatically triggers a zero-downtime deployment, rolling out the new version.
+
+4.  **Frontend Deployment:**
+    -   The `Frontend` and `Admin` applications are connected to the GitHub repository. A `git push` to the `main` branch automatically triggers a new build and deployment on Netlify and Vercel, respectively.
+
+
 
 ## 🗺️ API Gateway Endpoints
 
