@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5339c0da-7369-4591-89c0-10bcc3b95f41" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Admin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Admin/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Admin/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Admin/src/Compoenents/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Admin/src/Compoenents/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Admin/src/Context/AdminContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Admin/src/Context/AdminContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Admin/src/pages/Admin/AllAppoinments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Admin/src/pages/Admin/AllAppoinments.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Admin/src/pages/Admin/DoctorsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Admin/src/pages/Admin/DoctorsList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2uxMTGtK3H0ErxClTlkQHKKpcle" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/projects/Doctor-Appointment-Project/Frontend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.3.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.build" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5339c0da-7369-4591-89c0-10bcc3b95f41" name="Changes" comment="" />
+      <created>1743185777627</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743185777627</updated>
+      <workItem from="1743185779270" duration="446000" />
+      <workItem from="1743275999629" duration="3581000" />
+      <workItem from="1743869334821" duration="6052000" />
+      <workItem from="1743967680128" duration="21000" />
+      <workItem from="1745009238566" duration="3413000" />
+      <workItem from="1745043949644" duration="7106000" />
+      <workItem from="1746960868044" duration="1169000" />
+      <workItem from="1747243919023" duration="1094000" />
+      <workItem from="1747478576481" duration="3482000" />
+      <workItem from="1747507428259" duration="22000" />
+      <workItem from="1747734793158" duration="3866000" />
+      <workItem from="1747744091751" duration="478000" />
+      <workItem from="1747744592405" duration="5028000" />
+      <workItem from="1747756887891" duration="41000" />
+      <workItem from="1747819524256" duration="5403000" />
+      <workItem from="1747831774460" duration="28000" />
+      <workItem from="1747913119626" duration="913000" />
+      <workItem from="1747927241256" duration="55000" />
+      <workItem from="1748622275703" duration="2945000" />
+      <workItem from="1748781460084" duration="24000" />
+      <workItem from="1749303710441" duration="11000" />
+      <workItem from="1749304732282" duration="1368000" />
+      <workItem from="1751188822626" duration="655000" />
+      <workItem from="1751305194152" duration="866000" />
+      <workItem from="1751366760866" duration="797000" />
+      <workItem from="1751464049002" duration="1963000" />
+      <workItem from="1751526064792" duration="6000" />
+      <workItem from="1751540666731" duration="275000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+</project>

@@ -1,0 +1,71 @@
+#spring:
+#  application:
+#    name: DoctorService
+#  datasource:
+#    url: ${DB_URL}
+#    username: ${DB_USER}
+#    password: ${DB_PASSWORD}
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#  kafka:
+#    consumer:
+#      bootstrap-servers:  ${KAFKA_BOOTSTRAP_SERVERS}
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#server:
+#  port: 9003
+#
+#secret:
+#  key: ${SECRET_KEY}
+#
+#cloudinary:
+#  cloud_name: ${SPRING_CLOUDINARY_CLOUD_NAME}
+#  api_key: ${SPRING_CLOUDINARY_API_KEY}
+#  api_secret: ${SPRING_CLOUDINARY_API_SECRET}
+#
+
+spring:
+  application:
+    name: DoctorService
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    properties:
+      security.protocol: SASL_SSL
+      sasl.mechanism: PLAIN
+      sasl.jaas.config: >
+        org.apache.kafka.common.security.plain.PlainLoginModule required
+        username='${KAFKA_API_KEY}' password='${KAFKA_API_SECRET}';
+    consumer:
+      group-id: doctor-service-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+
+server:
+  port: 9003
+
+secret:
+  key: ${SECRET_KEY}
+
+cloudinary:
+  cloud_name: ${SPRING_CLOUDINARY_CLOUD_NAME}
+  api_key: ${SPRING_CLOUDINARY_API_KEY}
+  api_secret: ${SPRING_CLOUDINARY_API_SECRET}
+

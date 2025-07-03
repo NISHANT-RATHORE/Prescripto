@@ -1,0 +1,66 @@
+version: '3.8'
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  api-gateway-service:
+    image: api-gateway-service:latest
+    build:
+      context: ./ApiGatewayService
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./ApiGatewayService/.env
+
+  auth-service:
+    image: auth-service:latest
+    build:
+      context: ./AuthService
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+    ports:
+      - "9001:9001"
+    env_file:
+      - ./AuthService/.env
+
+  doctor-service:
+    image: doctor-service:latest
+    build:
+      context: ./DoctorService
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+    ports:
+      - "9003:9003"
+    env_file:
+      - ./DoctorService/.env
+
+  patient-service:
+    image: patient-service:latest
+    build:
+      context: ./PatientService
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+    ports:
+      - "9002:9002"
+    env_file:
+      - ./PatientService/.env
+
+  appointment-service:
+    image: appointment-service:latest
+    build:
+      context: ./AppointmentService
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+    ports:
+      - "9004:9004"
+    env_file:
+      - ./AppointmentService/.env
