@@ -66,6 +66,7 @@ public class DoctorService {
         }
     }
 
+<<<<<<< HEAD
     public void changeAvailabilityByEmail(String email) {
         Optional<Doctor> doctorOptional = Optional.ofNullable(doctorRepository.findByEmail(email));
         if (doctorOptional.isPresent()) {
@@ -74,6 +75,18 @@ public class DoctorService {
             doctorRepository.save(doctor);
         } else {
             throw new RuntimeException("Doctor not found with email: " + email);
+=======
+    public void changeAvailabilityByEmail(String doctorId) {
+        Optional<Doctor> doctorOptional = Optional.ofNullable(doctorRepository.findByDoctorId(doctorId));
+        if (doctorOptional.isPresent()) {
+            Doctor doctor = doctorOptional.get();
+            doctor.setAvailable(!doctor.getAvailable());
+            log.info("Doctor availability changed: " + doctor.getEmail() + " to " + doctor.getAvailable());
+            doctorRepository.save(doctor);
+        } else {
+            log.error("Doctor not found with email: " + doctorId);
+            throw new RuntimeException("Doctor not found with email: " + doctorId);
+>>>>>>> 16605277355c3ebd23f3adf839fa2bc5b8f5b201
         }
     }
 

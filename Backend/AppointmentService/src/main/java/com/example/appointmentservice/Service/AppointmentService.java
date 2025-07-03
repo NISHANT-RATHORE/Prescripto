@@ -59,11 +59,19 @@ public class AppointmentService {
 
     public String Payment(String appointmentId, RazorpayClient razorpayClient) throws RazorpayException {
         Appointment appointment = appointmentRepository.findByAppointmentId(appointmentId);
+<<<<<<< HEAD
         if(appointment == null){
             log.warn("No appointment found for id: {}", appointmentId);
             return null;
         }
         int amount = appointment.getAmount()*100;
+=======
+        if (appointment == null) {
+            log.warn("No appointment found for id: {}", appointmentId);
+            return null;
+        }
+        int amount = appointment.getAmount() * 100;
+>>>>>>> 16605277355c3ebd23f3adf839fa2bc5b8f5b201
         JSONObject orderRequest = new JSONObject();
         orderRequest.put("amount", amount);
         orderRequest.put("currency", "INR");
@@ -80,6 +88,7 @@ public class AppointmentService {
         return !payments.isEmpty();
     }
 
+<<<<<<< HEAD
    public ResponseEntity<Doctor> getDoctor(String doctorId) {
        try {
            Doctor response = doctorServiceClient.getDoctor(doctorId);
@@ -93,6 +102,21 @@ public class AppointmentService {
            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
        }
    }
+=======
+    public ResponseEntity<Doctor> getDoctor(String doctorId) {
+        try {
+            Doctor response = doctorServiceClient.getDoctor(doctorId);
+            if (response == null) {
+                log.warn("Doctor data not found for ID: {}", doctorId);
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            log.error("Error fetching doctor data for ID: {}", doctorId, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+>>>>>>> 16605277355c3ebd23f3adf839fa2bc5b8f5b201
 
     public ResponseEntity<List<Doctor>> getDoctorData() {
         try {
@@ -144,7 +168,11 @@ public class AppointmentService {
             }
 
             log.info("Booking Appointment initiated for slot: {} on {}", appointmentDTO.getSlotTime(), appointmentDTO.getSlotDate());
+<<<<<<< HEAD
             log.info("PatientData :",appointmentDTO.getPatientData());
+=======
+            log.info("PatientData :", appointmentDTO.getPatientData());
+>>>>>>> 16605277355c3ebd23f3adf839fa2bc5b8f5b201
 
             // Fetch doctor data
             Doctor docData = appointmentDTO.getDoctorData();
@@ -211,4 +239,26 @@ public class AppointmentService {
 
         return appointmentDTOs;
     }
+<<<<<<< HEAD
+=======
+
+    public List<AppointmentDTO> getAllAppointments() {
+        List<Appointment> appointments = appointmentRepository.findAll();
+        List<AppointmentDTO> appointmentDTOs = new ArrayList<>();
+        for (Appointment appointment : appointments) {
+            // Fetch doctor and patient data
+            Doctor doctor = doctorServiceClient.getDoctor(appointment.getDoctorId());
+            Patient patient = userServiceClient.getPatient(appointment.getPatientId());
+
+            // Map Appointment to AppointmentDTO
+            AppointmentDTO appointmentDTO = AppointmentMapper.mapToAppointmentDTO(appointment);
+            appointmentDTO.setDoctorData(doctor);
+            appointmentDTO.setPatientData(patient);
+
+            appointmentDTOs.add(appointmentDTO);
+        }
+        return appointmentDTOs;
+    }
+
+>>>>>>> 16605277355c3ebd23f3adf839fa2bc5b8f5b201
 }

@@ -125,6 +125,26 @@ public class AppointmentController {
         }
     }
 
+<<<<<<< HEAD
+=======
+    @GetMapping("/allAppointments")
+    public ResponseEntity<List<AppointmentDTO>> getAllAppointments() {
+        try {
+            log.info("Retrieving all appointments");
+            List<AppointmentDTO> appointments = appointmentService.getAllAppointments();
+            if (appointments.isEmpty()) {
+                log.warn("No appointments found");
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            }
+            log.info("All appointments retrieved successfully");
+            return ResponseEntity.ok(appointments);
+        } catch (Exception e) {
+            log.error("Error retrieving all appointments", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+>>>>>>> 16605277355c3ebd23f3adf839fa2bc5b8f5b201
     @GetMapping("/payment")
     public ResponseEntity<String> Payment(@RequestParam String appointmentId) throws RazorpayException {
         try {

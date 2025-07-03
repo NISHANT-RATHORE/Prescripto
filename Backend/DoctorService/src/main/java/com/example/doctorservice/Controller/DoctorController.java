@@ -116,10 +116,17 @@ public class DoctorController {
     }
 
 
+<<<<<<< HEAD
     @PostMapping("/changeAvailability/{email}")
     public ResponseEntity<?> changeAvailable(@PathVariable String email) {
         try {
             doctorService.changeAvailabilityByEmail(email);
+=======
+    @PutMapping("/changeAvailability/{doctorId}")
+    public ResponseEntity<?> changeAvailable(@PathVariable String doctorId) {
+        try {
+            doctorService.changeAvailabilityByEmail(doctorId);
+>>>>>>> 16605277355c3ebd23f3adf839fa2bc5b8f5b201
             log.info("Successfully changed the availability");
             return ResponseEntity.status(HttpStatus.OK).body("Successfully changed the availability");
         } catch (Exception e) {

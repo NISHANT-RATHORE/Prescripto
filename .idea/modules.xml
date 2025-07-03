@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/Doctor-Appoitment-Project-2.O.iml" filepath="$PROJECT_DIR$/.idea/Doctor-Appoitment-Project-2.O.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AuthService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/AuthService.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Doctor-Appointment-Project.iml" filepath="$PROJECT_DIR$/.idea/Doctor-Appointment-Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DoctorService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/DoctorService.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PatientService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/PatientService.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PatientService.test.iml" filepath="$PROJECT_DIR$/.idea/modules/PatientService.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.PatientService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.PatientService.main.iml" />
+>>>>>>> 16605277355c3ebd23f3adf839fa2bc5b8f5b201
     </modules>
   </component>
 </project>

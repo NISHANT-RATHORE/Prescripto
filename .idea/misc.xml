@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
+=======
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/Backend/AuthService" />
+    <file type="web" url="file://$PROJECT_DIR$/Backend/DoctorService" />
+  </component>
+>>>>>>> 16605277355c3ebd23f3adf839fa2bc5b8f5b201
   <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
