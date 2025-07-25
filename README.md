@@ -6,7 +6,7 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14-336791.svg?style=for-the-badge&logo=postgresql)](https://www.postgresql.org/)
 [![Kafka](https://img.shields.io/badge/Apache%20Kafka-3.x-231F20.svg?style=for-the-badge&logo=apache-kafka)](https://kafka.apache.org/)
 [![Docker](https://img.shields.io/badge/Docker-20.10-2496ED.svg?style=for-the-badge&logo=docker)](https://www.docker.com/)
-[![AWS](https://img.shields.io/badge/AWS-Deployed-232F3E.svg?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/)
+[![Render](https://img.shields.io/badge/Render-Deployed-46E3B7.svg?style=for-the-badge&logo=render)](https://render.com/)
 
 Prescripto is a modern, full-stack, cloud-native application designed to streamline the process of booking doctor appointments. Built on a robust microservices architecture, it provides a seamless and secure experience for patients, doctors, and administrators.
 
@@ -38,7 +38,7 @@ You can explore the admin panel using the following demo credentials:
 -   **Seamless Appointment Booking:** An intuitive multi-step process for booking and confirming appointments.
 -   **Integrated Payment Gateway:** Secure payment processing powered by Razorpay in test mode.
 -   **Appointment Management:** Patients can view their upcoming and past appointments and cancel if needed.
--   **Cloud-Native Deployment:** Fully containerized with Docker and deployed on AWS App Runner for high availability and scalability.
+-   **Cloud-Native Deployment:** Fully containerized with Docker and deployed on **Render** for high availability and scalability.
 
 ## 📸 Screenshots
 
@@ -65,7 +65,7 @@ The backend follows a microservices pattern, with an API Gateway as the single e
 | **Backend**   | `Java 21`, `Spring Boot 3`, `Spring Cloud Gateway`, `Spring Security`, `Spring Data JPA`, `Lombok`                |
 | **Database**  | `PostgreSQL`                                                                                                  |
 | **Messaging** | `Apache Kafka`                                                                                                |
-| **DevOps**    | `Docker`, `Docker Compose`, `AWS ECR`, `AWS App Runner`, `Netlify` (Frontend), `Vercel` (Admin)                 |
+| **DevOps**    | `Docker`, `Docker Compose`, `Render` (Backend), `Netlify` (Frontend), `Vercel` (Admin)                 |
 
 ## ⚙️ Local Setup and Installation
 
@@ -115,57 +115,51 @@ To run this project locally, you will need to have the following prerequisites i
 
 ## ☁️ Cloud Deployment
 
-The entire application is deployed using a modern, cloud-native strategy, leveraging serverless principles to ensure scalability and cost-efficiency.
+The entire application is deployed using a modern, cloud-native strategy, leveraging Platform-as-a-Service (PaaS) to ensure scalability and cost-efficiency.
 
 ### Deployment Architecture
 
-| Component             | Service / Platform Used     | Purpose                                            |
-|-----------------------|-----------------------------|----------------------------------------------------|
-| **Backend Services**  | **AWS App Runner**          | Hosts the 5 containerized Spring Boot microservices. |
-| **Container Registry**  | **AWS ECR**                 | Stores the Docker images for all backend services.   |
-| **Database**          | **Neon** (Serverless Postgres) | Provides a fully managed, scalable SQL database.   |
-| **Message Broker**    | **Confluent** (Serverless Kafka)| Manages asynchronous, event-driven communication.  |
-| **Frontend App**      | **Netlify**                 | Deploys and hosts the main patient-facing web app. |
-| **Admin Panel**       | **Vercel**                  | Deploys and hosts the admin web application.       |
+| Component             | Service / Platform Used     | Purpose                                                                 |
+|-----------------------|-----------------------------|-------------------------------------------------------------------------|
+| **Backend Services**  | **Render**                  | Hosts the 5 containerized Spring Boot microservices with auto-deploys. |
+| **Database**          | **Neon** (Serverless Postgres) | Provides a fully managed, scalable SQL database.                       |
+| **Message Broker**    | **Confluent** (Serverless Kafka)| Manages asynchronous, event-driven communication.                      |
+| **Frontend App**      | **Netlify**                 | Deploys and hosts the main patient-facing web app.                      |
+| **Admin Panel**       | **Vercel**                  | Deploys and hosts the admin web application.                            |
 
 ### Deployment Workflow
 
-The backend deployment is automated through a push-to-deploy workflow.
+The deployment is automated through a push-to-deploy workflow powered by Git.
 
 1.  **Prerequisites:**
-    -   AWS CLI configured (`aws configure`)
-    -   Docker installed and running
+    -   A Render account connected to your GitHub account.
+    -   The project code pushed to a GitHub repository.
 
 2.  **Infrastructure Setup:**
     -   A serverless PostgreSQL database is provisioned on **Neon**.
     -   A serverless Kafka cluster is provisioned on **Confluent**.
-    -   The connection strings, API keys, and credentials from these services are used as environment variables in the App Runner configuration.
+    -   The connection strings, API keys, and credentials from these services are collected to be used as environment variables in Render.
 
-3.  **Backend Deployment to App Runner:**
-    For each of the 5 backend microservices, the following process is followed:
-    a. **Build the JAR:** The application is packaged using Maven:
-       ```bash
-       ./gradlew clean build -x test
-       ```
-    b. **Build Docker Image:** A container image is built using the service's `Dockerfile`.
-       ```bash
-       docker build -t <service-name> .
-       ```
-    c. **Push to ECR:** The image is tagged and pushed to its dedicated Amazon ECR repository.
-       ```bash
-       # Authenticate Docker with AWS ECR
-       aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-aws-account-id>.dkr.ecr.<your-region>.amazonaws.com
+3.  **Backend Deployment to Render:**
+    Render's "Infrastructure as Code" feature using a `render.yaml` file is the recommended way to deploy a multi-service application.
 
-       # Tag and Push
-       docker tag <service-name>:latest <your-ecr-repo-uri>:latest
-       docker push <your-ecr-repo-uri>:latest
-       ```
-    d. **Automatic Deployment:** AWS App Runner is configured to monitor the ECR repository. When a new image is pushed, App Runner automatically triggers a zero-downtime deployment, rolling out the new version.
+    a. **Create `render.yaml`:** A `render.yaml` file is created in the root of the repository to define all 5 microservices. Each service is defined as a "Web Service".
+
+    b. **Configure Each Service:** For each of the 5 backend microservices, the `render.yaml` specifies:
+        -   `name`: A unique name (e.g., `auth-service`).
+        -   `type`: `web`.
+        -   `runtime`: `docker`.
+        -   `repo`: The GitHub repository URL.
+        -   `rootDir`: The path to the specific microservice (e.g., `./Backend/AuthService`).
+        -   `envVars`: Environment variables are configured here, sourcing secrets from Render's secret management (for database URLs, Kafka credentials, JWT secrets, etc.).
+
+    c. **Automatic Deployment:**
+        -   Once the `render.yaml` is pushed to the repository, you create a new "Blueprint" service in the Render dashboard and point it to your repository.
+        -   Render automatically discovers the `Dockerfile` in each service's `rootDir`, builds the container image, and deploys it.
+        -   Any subsequent `git push` to the main branch will trigger a new build and a zero-downtime deployment for the updated services.
 
 4.  **Frontend Deployment:**
-    -   The `Frontend` and `Admin` applications are connected to the GitHub repository. A `git push` to the `main` branch automatically triggers a new build and deployment on Netlify and Vercel, respectively.
-
-
+    -   The `Frontend` and `Admin` applications are connected to the GitHub repository in their respective Netlify and Vercel projects. A `git push` to the `main` branch automatically triggers a new build and deployment on these platforms.
 
 ## 🗺️ API Gateway Endpoints
 
