@@ -16,7 +16,7 @@ The application is deployed and publicly accessible.
 
 | Platform      | URL                                                                  | Status                                                                                                   |
 |---------------|----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| **Frontend App**  | [**https://prescripto-webapp.netlify.app**](https://doctor-appointment-project-topaz.vercel.app/) |  **Running** |
+| **Frontend App**  | [**https://doctor-appointment-project-topaz.vercel.app/**](https://doctor-appointment-project-topaz.vercel.app/) |  **Running** |
 | **Admin Panel**   | [**https://prescripto-admin-teal.vercel.app**](https://prescripto-admin-teal.vercel.app) | **Running**                                                                                              |
 
 You can explore the admin panel using the following demo credentials:
